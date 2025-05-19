@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+        .register-btn {
+            background-color: #28a745;
+        }
+        .register-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script>
+        function validateLogin(event) {
+            event.preventDefault();
+            let email = document.getElementById('email');
+            let password = document.getElementById('password');
+            let isValid = true;
+            
+            if (!email.value.trim()) {
+                document.getElementById('emailError').textContent = 'Email is required';
+                isValid = false;
+            } else {
+                document.getElementById('emailError').textContent = '';
+            }
+            
+            if (!password.value.trim()) {
+                document.getElementById('passwordError').textContent = 'Password is required';
+                isValid = false;
+            } else {
+                document.getElementById('passwordError').textContent = '';
+            }
+            
+            if (isValid) {
+                alert('Login successful!');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form action="login_process.php" method="POST">
+            <label>Email *</label>
+            <input type="email" id="email" name="email" required>
+            <span id="emailError" class="error"></span>
+            
+            <label>Password *</label>
+            <input type="password" id="password" name="password" required>
+            <span id="passwordError" class="error"></span>
+            
+            <button type="submit">Login</button>
+            <button type="button" class="register-btn" onclick="window.location.href='register.html'">Register</button>
+        </form>
+        
+    </div>
+</body>
+</html>

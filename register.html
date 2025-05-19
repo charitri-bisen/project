@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            let isValid = true;
+            let inputs = document.querySelectorAll('input[required], select[required]');
+            
+            inputs.forEach(input => {
+                let errorSpan = input.nextElementSibling;
+                if (!errorSpan || !errorSpan.classList.contains('error')) {
+                    errorSpan = document.createElement('span');
+                    errorSpan.classList.add('error');
+                    input.parentNode.insertBefore(errorSpan, input.nextSibling);
+                }
+                
+                if (!input.value.trim()) {
+                    errorSpan.textContent = 'This field is required';
+                    isValid = false;
+                } else {
+                    errorSpan.textContent = '';
+                }
+            });
+            
+            if (isValid) {
+                alert('Form submitted successfully!');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Registration</h2>
+        <form onsubmit="validateForm(event)">
+            <label>Student Name *</label>
+            <input type="text" placeholder="First Name" required>
+            <input type="text" placeholder="Last Name" required>
+            
+            <label>Date of Birth *</label>
+            <input type="date" required>
+            
+            <label>Gender *</label>
+            <select required>
+                <option value="">Select</option>
+                <option>Female</option>
+                <option>Male</option>
+                <option>Other</option>
+            </select>
+            
+            <label>Select Course *</label>
+            <select required>
+                <option value="">Select</option>
+                <option>Biology</option>
+                <option>Mathematics</option>
+                <option>Physics</option>
+                <option>Computer Science</option>
+            </select>
+            
+            <label>Student Email *</label>
+            <input type="email" required>
+            
+            <label>Student ID *</label>
+            <input type="text" required>
+            
+            <label>Address *</label>
+            <input type="text" placeholder="Address Line 1" required>
+            <input type="text" placeholder="Address Line 2">
+            <input type="text" placeholder="City" required>
+            <input type="text" placeholder="State / Province / Region" required>
+            <input type="text" placeholder="Postal Code" required>
+            <select required>
+                <option value="">Select</option>
+                <option>Afghanistan</option>
+                <option>USA</option>
+                <option>Canada</option>
+                <option>UK</option>
+            </select>
+            
+            <label>Additional Comments</label>
+            <textarea rows="4"></textarea>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
